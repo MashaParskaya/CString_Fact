@@ -20,10 +20,10 @@ using namespace cstr_hori_vert;
 int main(){
   Autotest();
 
-  map< string, shared_ptr<Factory> > factoryMap;
-  factoryMap["Hori"] = make_shared<FactoryHori>();
-  factoryMap["Vert"] = make_shared<FactoryVert>();
-  vector<shared_ptr<CString>> strVector;
+  map< string, Factory* > factoryMap;
+  factoryMap["Hori"] = new FactoryHori();
+  factoryMap["Vert"] = new FactoryVert();
+  vector<CString*> strVector;
 
   string datafile;
   cin >> datafile;

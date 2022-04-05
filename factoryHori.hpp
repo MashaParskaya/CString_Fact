@@ -11,8 +11,8 @@ namespace cstr_hori_vert{
 
   class FactoryHori : public Factory {
   public:
-    virtual shared_ptr<CString> Create(const char* tmp, const int len, const string filename) const override final {
-      return make_shared<CStringH>(tmp, len, filename);
+    virtual CString* Create(const char* tmp, const int len, const string filename) const override final {
+      return new CStringH(tmp, len, filename);
     }
 
     FactoryHori() = default;
