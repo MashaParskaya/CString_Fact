@@ -20,9 +20,9 @@ using namespace cstr_hori_vert;
 int main(){
   Autotest();
 
-  map< string, unique_ptr<Factory> > factoryMap;
-  factoryMap["Hori"] = unique_ptr<Factory>(new FactoryHori);
-  factoryMap["Vert"] = unique_ptr<Factory>(new FactoryVert);
+  map< string, shared_ptr<Factory> > factoryMap;
+  factoryMap["Hori"] = make_shared<FactoryHori>();
+  factoryMap["Vert"] = make_shared<FactoryVert>();
   vector<shared_ptr<CString>> strVector;
 
   string datafile;
