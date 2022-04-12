@@ -1,7 +1,8 @@
 #include "autotest.hpp"
+//#include <chrono>
 
 int test1(){
-  int n = 10;
+  constexpr int n = 10;
   char b[n];
   for (int i = 0; i < n; i++){
     b[i] = 'a';
@@ -22,7 +23,7 @@ int test1(){
 }
 
 int test2(){
-  int n = 10;
+  constexpr int n = 10;
   char b[n];
   for (int i = 0; i < n; i++){
     b[i] = 'a';
@@ -48,7 +49,7 @@ int test2(){
 }
 
 int test3(){
-  int n = 10;
+  constexpr int n = 10;
   char b[n];
   for (int i = 0; i < n; i++){
     b[i] = 'a';
@@ -74,8 +75,8 @@ int test3(){
 }
 
 int test4(){
-  int n = 10;
-  int m = 5;
+  constexpr int n = 10;
+  constexpr int m = 5;
   char b[n];
   char c[m];
   for (int i = 0; i < n; i++){
@@ -179,6 +180,40 @@ int test7(){
   return 0;
 }
 
+/*
+int parallel_test(long long len){
+  cout << "Please, wait" << endl;
+  char* a = new char[len];
+  char* b = new char[len];
+  for (int i = 0; i < len; i++){
+    a[i] = 'a';
+    b[i] = 'b';
+  }
+  CStringH s1(a, len);
+  CStringH s2(b, len);
+  CStringH s_res_1;
+  CStringH s_res_2;
+  auto start_time = chrono::high_resolution_clock::now();
+  auto elapsed_time = chrono::high_resolution_clock::now() - start_time;
+  long long ns = chrono::duration_cast<chrono::microseconds>(elapsed_time).count();
+  start_time = chrono::high_resolution_clock::now();
+  s_res_1 = simple_plus(s1, s2);
+  elapsed_time = chrono::high_resolution_clock::now() - start_time;
+  ns = chrono::duration_cast<chrono::microseconds>(elapsed_time).count();
+  cout << "Time consumed without omp to concenate 2 strings of length " << len << ": " << ns << "mks" << endl;
+
+  start_time = chrono::high_resolution_clock::now();
+  s_res_2 = s1 + s2;
+  elapsed_time = chrono::high_resolution_clock::now() - start_time;
+  ns = chrono::duration_cast<chrono::microseconds>(elapsed_time).count();
+  cout << "Time consumed with omp to concenate 2 strings of length " << len << ":    " << ns << "mks" << endl;
+
+  delete []a;
+  delete []b;
+  return 1;
+}
+*/
+
 void Autotest(){
   cout << "Testing...\n";
   test1();
@@ -188,4 +223,6 @@ void Autotest(){
   test5();
   test6();
   test7();
+  parallel_test(100000000);
+  cout << "Testing completed\n";
 }
